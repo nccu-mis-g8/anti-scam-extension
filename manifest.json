@@ -1,0 +1,11 @@
+﻿{
+    "manifest_version": 3,
+    "name": "SemForgeAI",
+    "version": "0.0.1",
+    "permissions": [
+        "storage"
+    ],
+    "action": {
+        "default_popup": "popup/index.html"
+    }
+}
