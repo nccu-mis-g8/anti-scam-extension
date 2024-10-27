@@ -1,0 +1,339 @@
+﻿.modal {
+    display: flex; /* 初始化為隱藏 */
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* 保證它顯示在頂層 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* 半透明黑色背景 */
+}
+
+/* safe modal */
+.safeModal-frame {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fefefe;
+    padding: 20px;
+    border: 2px solid #96d572;
+    border-radius: 25px;
+    width: 80%; /* 可以調整寬度 */
+    max-width: 400px;
+}
+
+.safeModal-frame img {
+    position: absolute;
+    top: -75px;
+    width: 160px;
+    height: 150px;
+}
+
+.safeModal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 900;
+    color: black;
+}
+
+.safeButton {
+    border: none;
+    border-radius: 25px;
+    font-size: 20px;
+    font-weight: 900;
+    color: black;
+    background-color: #91f68a;
+    padding: 8px 35px;
+    cursor: pointer;
+}
+
+.safeButton:hover {
+    background-color: #87db81;
+}
+
+.safeButton:active {
+    background-color: #7abd75;
+}
+/* safe modal */
+
+/* danger modal */
+.danger-box {
+    background-color: #e58d8a;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 5px;
+    position: relative;
+    width: 80%; 
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.side-bar {
+    background-color: #e12c2f; /* 更深的紅色 */
+    width: 15px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #7e2928;
+}
+
+.header-title-content {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.risk-level {
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.dangerImg {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+.functionalBtn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.functionalBtn {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.rotated {
+    transform: rotate(180deg);
+}
+
+.danger-details {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #c15757;
+    transition: max-height 0.2s ease-out;
+    border-radius: 25px;
+    width: 70%;
+    font-weight: 900;
+}
+
+.danger-details-open {
+    padding-left: 70px;
+    padding-right: 35px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+/* danger modal */
+
+/* middle to high modal */
+.mth-box {
+    background-color: #eaa950;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 5px;
+    position: relative;
+    width: 80%; 
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.mth-side-bar {
+    background-color: #ff8121;
+    width: 15px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.mth-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.mth-header-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #7e2928;
+}
+
+.mth-header-title-content {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.mth-risk-level {
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.mthImg {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+.mth-functionalBtn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.mth-functionalBtn {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.mth-details {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #e7916c;
+    transition: max-height 0.2s ease-out;
+    border-radius: 25px;
+    width: 70%;
+    font-weight: 900;
+}
+
+.mth-details-open {
+    padding-left: 70px;
+    padding-right: 35px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+/* middle to high modal */
+
+/* middle modal */
+.middle-box {
+    background-color: #e2e570;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 5px;
+    position: relative;
+    width: 80%; 
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.middle-side-bar {
+    background-color: #dfcb4c;
+    width: 15px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.middle-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.middle-header-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #7e2928;
+}
+
+.middle-header-title-content {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.middle-risk-level {
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.middleImg {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+.middle-functionalBtn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.middle-functionalBtn {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.middle-details {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #dfcb4c;
+    transition: max-height 0.2s ease-out;
+    border-radius: 25px;
+    width: 70%;
+    font-weight: 900;
+}
+
+.middle-details-open {
+    padding-left: 70px;
+    padding-right: 35px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+/* middle modal */
