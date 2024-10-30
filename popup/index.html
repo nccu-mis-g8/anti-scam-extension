@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css" />
 </head>
 <body>
-    <h1>SemForgeAI</h1>
-    <p>This extension helps detect potentially fraudulent websites.</p>
+    <div class="container">
+        <div class="title">用戶回報機制</div>
+        <div class="line"></div>
+        <div class="side-bar"></div>
+        <div id="url"></div>
+        <div class="reason-container">
+            <div>可疑行為：</div>
+            <div class="checkbox-group">
+                <label class="custom-label">
+                    <input type="checkbox" class="custom-checkbox" value="用詞不當過於浮誇" >
+                    <span class="checkmark"></span>用詞不當過於浮誇
+                </label><br>
+                    
+                <label class="custom-label">
+                    <input type="checkbox" class="custom-checkbox" value="冒充合法企業或機構">
+                    <span class="checkmark"></span>冒充合法企業或機構
+                </label><br>
+                    
+                <label class="custom-label">
+                    <input type="checkbox" class="custom-checkbox" value="過度模糊的商品描述">
+                    <span class="checkmark"></span>過度模糊的商品描述
+                </label><br>
+            </div>
+        </div>
+        <div class="other-container">
+            <div>其他：</div>
+            <input type="text" id="other-reason-input" />
+        </div>
+        <button class="button" id="reportButton">送出</button>
+    </div>
+    <script src="popup.js"></script>
 </body>
 </html>
