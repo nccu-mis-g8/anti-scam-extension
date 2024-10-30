@@ -11,6 +11,35 @@
     background-color: rgba(0, 0, 0, 0.6); /* 半透明黑色背景 */
 }
 
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none; /* 停止顯示 */
+    }
+}
+
+.safe-modal {
+    display: flex; /* 初始化為隱藏 */
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* 保證它顯示在頂層 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* 半透明黑色背景 */
+    animation: fadeOut 2s forwards;
+}
+
 /* safe modal */
 .safeModal-frame {
     display: flex;
@@ -72,7 +101,7 @@
     border-radius: 5px;
     position: relative;
     width: 80%; 
-    max-width: 480px;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -145,13 +174,25 @@
     border-radius: 25px;
     width: 70%;
     font-weight: 900;
+    font-size: 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.danger-details::-webkit-scrollbar {
+    display: none; /* 隱藏滾動條 */
+}
+
+.details-reason {
+    max-height: 180px;
+    white-space: pre-wrap;
 }
 
 .danger-details-open {
-    padding-left: 70px;
-    padding-right: 35px;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding: 60px 35px;
     margin-top: 30px;
     margin-bottom: 15px;
     margin-left: 10px;
@@ -166,7 +207,7 @@
     border-radius: 5px;
     position: relative;
     width: 80%; 
-    max-width: 500px;
+    max-width: 520px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -235,13 +276,20 @@
     border-radius: 25px;
     width: 70%;
     font-weight: 900;
+    font-size: 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.mth-details::-webkit-scrollbar {
+    display: none; /* 隱藏滾動條 */
 }
 
 .mth-details-open {
-    padding-left: 70px;
-    padding-right: 35px;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding: 60px 35px;
     margin-top: 30px;
     margin-bottom: 15px;
     margin-left: 10px;
@@ -325,13 +373,20 @@
     border-radius: 25px;
     width: 70%;
     font-weight: 900;
+    font-size: 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.middle-details::-webkit-scrollbar {
+    display: none; /* 隱藏滾動條 */
 }
 
 .middle-details-open {
-    padding-left: 70px;
-    padding-right: 35px;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding: 60px 35px;
     margin-top: 30px;
     margin-bottom: 15px;
     margin-left: 10px;

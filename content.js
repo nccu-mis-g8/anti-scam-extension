@@ -3,7 +3,7 @@ function injectSafeModal() {
     const safeImageUrl = chrome.runtime.getURL("images/safe.png");
 
     const safeModalHTML = `
-        <div id="safeModal" class="modal">
+        <div id="safeModal" class="safe-modal">
             <div class="safeModal-frame">
                 <img src="${safeImageUrl}" alt="safe" />
                 <div class="safeModal-content">
@@ -31,7 +31,7 @@ function injectHighRiskModal(reason) {
     const dropDownImageUrl = chrome.runtime.getURL("images/dropDown.png");
     const closeImageUrl = chrome.runtime.getURL("images/close.png");
 
-    const safeModalHTML = `
+    const highRiskModalHTML = `
         <div id="highRiskModal" class="modal">
             <div class="danger-box">
                 <div class="side-bar"></div>
@@ -47,14 +47,13 @@ function injectHighRiskModal(reason) {
                     </div>
                 </div>
                 <div class="danger-details">
-                    <div>詐騙風險等級：高</div>
-                    <div>原因：${reason}</div>
+                    <div class="details-reason">詐騙風險等級：高\n${reason}</div>
                 </div>
             </div>
         </div>
     `;
 
-    document.body.insertAdjacentHTML('beforeend', safeModalHTML);
+    document.body.insertAdjacentHTML('beforeend', highRiskModalHTML);
     document.querySelector("#close").addEventListener("click", () => closeModal("high"));
     document.querySelector("#dropDown").addEventListener("click", () => dropDownDetail("high"));
     window.addEventListener("click", (event) => {
@@ -87,8 +86,7 @@ function injectMthRiskModal(reason) {
                     </div>
                 </div>
                 <div class="mth-details">
-                    <div>詐騙風險等級：中高</div>
-                    <div>原因：${reason}</div>
+                    <div class="details-reason">詐騙風險等級：中高\n${reason}</div>
                 </div>
             </div>
         </div>
@@ -127,8 +125,7 @@ function injectMiddleRiskModal(reason) {
                     </div>
                 </div>
                 <div class="middle-details">
-                    <div>詐騙風險等級：中</div>
-                    <div>原因：${reason}</div>
+                    <div class="details-reason">詐騙風險等級：中\n${reason}</div>
                 </div>
             </div>
         </div>
@@ -155,7 +152,7 @@ function dropDownDetail(level) {
             details.classList.remove("danger-details-open")
             toggleButton.classList.remove("rotated");
         } else {
-            details.style.maxHeight = details.scrollHeight + "px";
+            details.style.maxHeight = (details.scrollHeight * 2  + 100) + "px";
             details.classList.add("danger-details-open")
             toggleButton.classList.add("rotated");
         }
@@ -168,7 +165,7 @@ function dropDownDetail(level) {
             details.classList.remove("mth-details-open")
             toggleButton.classList.remove("rotated");
         } else {
-            details.style.maxHeight = details.scrollHeight + "px";
+            details.style.maxHeight = (details.scrollHeight * 2 + 100)  + "px";
             details.classList.add("mth-details-open")
             toggleButton.classList.add("rotated");
         }
@@ -181,7 +178,7 @@ function dropDownDetail(level) {
             details.classList.remove("middle-details-open")
             toggleButton.classList.remove("rotated");
         } else {
-            details.style.maxHeight = details.scrollHeight + "px";
+            details.style.maxHeight = (details.scrollHeight * 2  + 100)  + "px";
             details.classList.add("middle-details-open")
             toggleButton.classList.add("rotated");
         }
@@ -223,12 +220,49 @@ function closeModal(level) {
 
 // 獲取整個網頁的 HTML，包括所有標籤
 const fullPageContent = document.documentElement.outerHTML;
-console.log("Full page content:", fullPageContent);
+
+// 解析 HTML 字符串
+const parser = new DOMParser();
+const doc = parser.parseFromString(fullPageContent, 'text/html');
+
+// 提取表单和动作 URL
+const forms = Array.from(doc.querySelectorAll('form')).map(form => ({
+    formHTML: form.outerHTML,
+    actionURL: form.action
+}));
+
+// 提取链接
+const links = Array.from(doc.querySelectorAll('a')).map(link => link.href);
+
+// 提取脚本
+const scripts = Array.from(doc.querySelectorAll('script')).map(script => script.outerHTML);
+
+// 提取元信息
+const metaInfo = Array.from(doc.querySelectorAll('meta')).map(meta => ({
+    name: meta.getAttribute('name'),
+    content: meta.getAttribute('content')
+}));
+
+// 提取页面标题
+const title = doc.title;
+
+// 将所有内容打包成一个对象
+const result = {
+    forms: forms,
+    links: links,
+    scripts: scripts,
+    metaInfo: metaInfo,
+    title: title
+};
+
+// 输出结果
+console.log(result);
+
 
 // 模擬發送訊息到 background.js 檢查詐騙（可以省略API請求的部分）
 chrome.runtime.sendMessage({
     type: "checkFraud",
-    content: fullPageContent // 將完整的頁面內容發送到背景腳本
+    content: result, // 將完整的頁面內容發送到背景腳本
 });
 
 // 接收 background.js 的回應
