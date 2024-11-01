@@ -255,10 +255,6 @@ const result = {
     title: title
 };
 
-// 输出结果
-console.log(result);
-
-
 // 模擬發送訊息到 background.js 檢查詐騙（可以省略API請求的部分）
 chrome.runtime.sendMessage({
     type: "checkFraud",
@@ -267,10 +263,13 @@ chrome.runtime.sendMessage({
 
 // 接收 background.js 的回應
 chrome.runtime.onMessage.addListener((message) => {
+    console.log(message);
     if (message.type === "fraudCheckResult") {
         const { isFraudulent, riskLevel, reason } = message; 
         if (isFraudulent) {
             injectModalByRiskLevel(riskLevel, reason); // 如果是詐騙，顯示模態
+        } else {
+            alert("SemForgeAI error");
         }
     }
 });
